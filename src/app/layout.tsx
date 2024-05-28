@@ -1,5 +1,9 @@
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Map } from "./_components/map";
+import { Navbar } from "./_components/navbar";
+import { Tracker } from "./_components/tracker";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,7 +20,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={cn(inter.className, "overscroll-none whitespace-pre-line")}
+      >
+        <div className="relative flex h-screen w-screen overflow-clip">
+          <div className="flex w-full flex-1 flex-col">
+            <Navbar />
+            <Tracker />
+            {children}
+          </div>
+          <Map />
+        </div>
+      </body>
     </html>
   );
 }
